@@ -1,30 +1,60 @@
 package com.dio.desafio.dominio;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-    private Set<Conteudo> contudosConcluidos = new LinkedHashSet<>();
+    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
 
-    public Dev(String nome, Set<Conteudo> conteudosInscritos, Set<Conteudo> contudosConcluidos) {
+    public Dev(String nome) {
         this.nome = nome;
-        this.conteudosInscritos = conteudosInscritos;
-        this.contudosConcluidos = contudosConcluidos;
     }
 
-    public void increverBootcamp(Bootcamp bootcamp){
-        
+    public void setConteudosInscritos(Set<Conteudo> conteudosInscritos) {
+        this.conteudosInscritos = conteudosInscritos;
+    }
+
+
+    public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
+        this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Set<Conteudo> getConteudosInscritos() {
+        return conteudosInscritos;
+    }
+
+    public Set<Conteudo> getConteudosConcluidos() {
+        return conteudosConcluidos;
+    }
+    
+    
+
+    public void inscreverBootcamp(Bootcamp bootcamp){
+        this.conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcamp.getDevsInscritos().add(this);
     }
 
     public void progredir(){
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
+        if(conteudo.isPresent()){
+            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        } else {
+            System.err.println("Você não está matriculado em nenhum conteúdo!!");
+        }
 
     }
 
-    public void calcularXpTotal(){
-
+    public double calcularXpTotal(){
+        return this.conteudosConcluidos.stream().mapToDouble(conteudo -> conteudo.calcularXp()).sum();
     }
 
     public int hashCode() {
@@ -32,7 +62,7 @@ public class Dev {
         int result = 1;
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((conteudosInscritos == null) ? 0 : conteudosInscritos.hashCode());
-        result = prime * result + ((contudosConcluidos == null) ? 0 : contudosConcluidos.hashCode());
+        result = prime * result + ((conteudosConcluidos == null) ? 0 : conteudosConcluidos.hashCode());
         return result;
     }
 
@@ -54,15 +84,13 @@ public class Dev {
                 return false;
         } else if (!conteudosInscritos.equals(other.conteudosInscritos))
             return false;
-        if (contudosConcluidos == null) {
-            if (other.contudosConcluidos != null)
+        if (conteudosConcluidos == null) {
+            if (other.conteudosConcluidos != null)
                 return false;
-        } else if (!contudosConcluidos.equals(other.contudosConcluidos))
+        } else if (!conteudosConcluidos.equals(other.conteudosConcluidos))
             return false;
         return true;
     }
 
 
-
-    
 }

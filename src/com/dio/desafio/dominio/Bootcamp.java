@@ -13,11 +13,33 @@ public class Bootcamp {
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
     
-    public Bootcamp(String nome, String descricao, Set<Dev> devsInscritos, Set<Conteudo> conteudos) {
+    public Bootcamp(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.devsInscritos = devsInscritos;
-        this.conteudos = conteudos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public LocalDate getDataInicial() {
+        return dataInicial;
+    }
+
+    public LocalDate getDataFinal() {
+        return dataFinal;
+    }
+
+    public Set<Dev> getDevsInscritos() {
+        return devsInscritos;
+    }
+
+    public Set<Conteudo> getConteudos() {
+        return conteudos;
     }
 
     public int hashCode() {
@@ -72,6 +94,7 @@ public class Bootcamp {
             return false;
         return true;
     }
+
 
     
 
