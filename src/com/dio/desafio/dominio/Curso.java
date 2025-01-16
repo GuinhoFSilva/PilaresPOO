@@ -9,7 +9,7 @@ public class Curso extends Conteudo{
     }
 
     public double calcularXp(){
-        return 10;
+        return XP_PADRAO * cargaHoraria;
     }
 
     public String toString(){
