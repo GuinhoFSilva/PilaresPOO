@@ -12,23 +12,7 @@ public class Mentoria extends Conteudo {
     }
 
     public double calcularXp(){
-        return 10;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        return XP_PADRAO + 20d;
     }
 
     public LocalDate getData() {
@@ -40,7 +24,7 @@ public class Mentoria extends Conteudo {
     }
 
     public String toString(){
-        return titulo + " " + descricao + " " + data;
+        return getTitulo() + " " + getDescricao() + " " + getData();
     }
 
     

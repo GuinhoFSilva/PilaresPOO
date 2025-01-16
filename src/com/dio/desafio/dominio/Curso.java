@@ -13,32 +13,10 @@ public class Curso extends Conteudo{
     }
 
     public String toString(){
-        return titulo + " " + descricao + " " + cargaHoraria;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        return  getTitulo() + " " + getDescricao() + " " + cargaHoraria;
     }
 
     public int getCargaHoraria() {
         return cargaHoraria;
     }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-
 }
